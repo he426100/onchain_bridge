@@ -1,6 +1,7 @@
 name: on_chain_bridge
 description: A new Flutter plugin project.
 version: 0.0.2
+publish_to: 'none'
 homepage:
 
 environment:
@@ -11,7 +12,11 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.1.8
-  blockchain_utils: ^5.2.0
+  # blockchain_utils: ^5.2.0
+  blockchain_utils:
+    git:
+      url: https://github.com/he426100/blockchain_utils.git
+      ref: dev
   # on_chain_bridge:
   #   path: ../
     
