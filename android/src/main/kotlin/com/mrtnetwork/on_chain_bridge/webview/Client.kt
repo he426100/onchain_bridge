@@ -10,10 +10,22 @@ import android.webkit.WebViewClient
 import com.mrtnetwork.on_chain_bridge.OnChainCore
 import io.flutter.plugin.common.MethodChannel
 
-class CustomWebViewClient(private val methodChannel: MethodChannel, val id: String) : WebViewClient() {
+class CustomWebViewClient(
+    private val methodChannel: MethodChannel,
+    val id: String,
+    private val platformView: WebViewPlatformView
+) : WebViewClient() {
 
     override fun onPageStarted(view: WebView, url: String, favicon: Bitmap?) {
         super.onPageStarted(view, url, favicon)
+
+        // 关键优化：立即注入缓存的脚本（如果有）
+        val cachedScript = platformView.cachedInjectionScript
+        if (cachedScript != null) {
+            view.evaluateJavascript(cachedScript, null)
+            android.util.Log.d("OnChainBridge", "[FastInject] Cached script injected in onPageStarted")
+        }
+
         view.evaluateJavascript(  "(function() {" +
                 "var links = document.getElementsByTagName('link');" +
                 "for (var i = 0; i < links.length; i++) {" +

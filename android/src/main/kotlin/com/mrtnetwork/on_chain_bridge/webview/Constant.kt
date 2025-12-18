@@ -21,6 +21,7 @@ interface WebViewConst {
         const val request: String = "request"
         const val dispose: String = "dispose"
         const val clearCache: String = "clearCache"
+        const val setCachedScript: String = "setCachedScript"
 
     }
 

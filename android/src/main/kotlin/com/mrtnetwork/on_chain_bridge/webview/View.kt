@@ -24,10 +24,13 @@ class WebViewPlatformView(
     PlatformView {
     private val webView: WebView = WebView(context!!)
 
+    // 缓存的脚本，用于在 onPageStarted 中快速注入
+    var cachedInjectionScript: String? = null
+
     init {
         webView.settings.javaScriptEnabled = true
         webView.settings.domStorageEnabled = true
-        webView.webViewClient = CustomWebViewClient(channel, id)
+        webView.webViewClient = CustomWebViewClient(channel, id, this)
         webView.webChromeClient = CustomWebChromeClient(channel, id)
 
         if (url != null) {
@@ -91,4 +94,12 @@ class WebViewPlatformView(
         webView.clearCache(true)
     }
 
+    fun setCachedInjectionScript(script: String?) {
+        cachedInjectionScript = script
+        android.util.Log.d("OnChainBridge", "[FastInject] Cached script set, length: ${script?.length ?: 0}")
+    }
+
+    fun getWebView(): WebView {
+        return webView
+    }
 }

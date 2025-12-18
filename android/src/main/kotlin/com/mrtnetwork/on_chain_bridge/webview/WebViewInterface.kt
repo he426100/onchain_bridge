@@ -87,6 +87,11 @@ interface WebViewInterface : OnChainCore {
                         webViewFactory.clearCache()
                         result.success(null)
                     }
+                    WebViewConst.setCachedScript -> {
+                        val script: String? = args["script"] as String?
+                        webViewFactory.setCachedInjectionScript(script)
+                        result.success(null)
+                    }
                     WebViewConst.injectJavaScript -> {
                         val script: String? = args["script"] as String?
                         if (script == null) {

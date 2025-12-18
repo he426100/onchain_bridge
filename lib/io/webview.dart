@@ -20,6 +20,7 @@ class _WebViewConst {
   static const String addInterface = "addJsInterface";
   static const String removeInterface = "removeInterface";
   static const String clearCache = "clearCache";
+  static const String setCachedScript = "setCachedScript";
 }
 
 class WebViewIoInterface implements PlatformWebView {
@@ -194,5 +195,15 @@ class WebViewIoInterface implements PlatformWebView {
     // assert(!Platform.isMacOS, "clearCache not implements");
     if (Platform.isMacOS) return;
     await _call(viewType: viewType, type: _WebViewConst.clearCache);
+  }
+
+  @override
+  Future<void> setCachedScript(
+      {required String viewType, required String script}) async {
+    if (Platform.isMacOS) return;
+    await _call(
+        viewType: viewType,
+        type: _WebViewConst.setCachedScript,
+        args: {"script": script});
   }
 }

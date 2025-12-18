@@ -89,6 +89,8 @@ abstract class PlatformWebView {
   Future<void> init(String viewType,
       {String url = "https://google.com", String? jsInterface = "onChain"});
   Future<void> clearCache(String viewType);
+  Future<void> setCachedScript(
+      {required String viewType, required String script});
   void addListener(WebViewListener listener);
   void removeListener(WebViewListener listener);
 }
