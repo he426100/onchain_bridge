@@ -56,8 +56,8 @@ class WebViewFactory(private val view: WebViewPlatformView) :
         view.clearCache()
     }
 
-    fun setCachedInjectionScript(script: String?) {
-        view.setCachedInjectionScript(script)
+    fun setCachedScript(script: String?) {
+        view.setCachedScript(script)
     }
 
 }
