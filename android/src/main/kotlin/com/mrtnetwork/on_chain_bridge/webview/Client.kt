@@ -24,25 +24,6 @@ class CustomWebViewClient(
         if (cachedScript != null) {
             view.evaluateJavascript(cachedScript, null)
             android.util.Log.d("OnChainBridge", "[FastInject] Cached script injected in onPageStarted")
-
-            // 检测 window.ethereum 何时可用
-            view.postDelayed({
-                view.evaluateJavascript("(function() { return typeof window.ethereum !== 'undefined'; })()") { result ->
-                    android.util.Log.d("OnChainBridge", "[FastInject] window.ethereum available after 50ms: $result")
-                }
-            }, 50)
-
-            view.postDelayed({
-                view.evaluateJavascript("(function() { return typeof window.ethereum !== 'undefined'; })()") { result ->
-                    android.util.Log.d("OnChainBridge", "[FastInject] window.ethereum available after 100ms: $result")
-                }
-            }, 100)
-
-            view.postDelayed({
-                view.evaluateJavascript("(function() { return typeof window.ethereum !== 'undefined'; })()") { result ->
-                    android.util.Log.d("OnChainBridge", "[FastInject] window.ethereum available after 200ms: $result")
-                }
-            }, 200)
         }
 
         view.evaluateJavascript(  "(function() {" +
