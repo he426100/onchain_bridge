@@ -94,7 +94,7 @@ class WebViewPlatformView(
         webView.clearCache(true)
     }
 
-    fun setCachedScript(script: String?) {
+    fun setCachedInjectionScript(script: String?) {
         cachedInjectionScript = script
         android.util.Log.d("OnChainBridge", "[FastInject] Cached script set, length: ${script?.length ?: 0}")
     }
